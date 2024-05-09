@@ -40,8 +40,8 @@ dependencies:
 #  ffmpeg_kit_flutter: ^6.0.3
   http:
   image_picker: ^0.8.5+3
-  permission_handler:
-  path_provider:
+#  permission_handler:
+#  path_provider:
 
 dev_dependencies:
   flutter_test:

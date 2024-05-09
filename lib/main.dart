@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -62,7 +63,9 @@ class _MyAppState extends State<MyApp> {
     final response = await request.send();
     if (response.statusCode == 200) {
       final responseBody = await response.stream.bytesToString();
-      responseModel = ResponseModel.fromJson(responseBody);
+     var responseBodyDecode=jsonDecode(responseBody);
+      responseModel = ResponseModel.fromJson(responseBodyDecode);
+      print("responseBody:$responseBodyDecode");
       print('Video uploaded successfully');
     } else {
       print('Failed to upload video');
@@ -112,11 +115,11 @@ class _MyAppState extends State<MyApp> {
                 child: Text('Record Video'),
               ),
 
-              ElevatedButton(
-                onPressed: _uploadVideo,
-                child: Text('Upload Video'),
-              ),
-              if (_video != null) Text('Selected video: ${_video!.path.split('/').last}'),
+              // ElevatedButton(
+              //   onPressed: _uploadVideo,
+              //   child: Text('Upload Video'),
+              // ),
+              //if (_video != null) Text('Selected video: ${_video!.path.split('/').last}'),
               // if (responseModel != null) Text('Sentence: ${responseModel!.sentence!.join(', ')}'),
               if (_isUploading)
               CircularProgressIndicator()
